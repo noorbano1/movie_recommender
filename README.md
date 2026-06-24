@@ -1,148 +1,149 @@
-# Movie Recommender System
+# 🎬 Movie Recommender System
 
-A machine learning-based movie recommendation system that suggests similar movies based on movie content such as genres, keywords, cast, crew, and overview.
+A machine learning-based movie recommendation system built with Python and Streamlit. This application recommends similar movies based on movie content such as genres, cast, crew, keywords, and overview using **Content-Based Filtering**.
+
+---
 
 ## Project Overview
-This project uses **Content-Based Filtering** to recommend movies.  
-It compares movie features and suggests the most similar movies to the user.
 
-Example:
-Input:
-- Avatar
+This project suggests movies similar to a selected movie by analyzing textual features and calculating similarity using **Cosine Similarity**.
 
-Output:
-- Guardians of the Galaxy
-- John Carter
-- Aliens
-- Star Trek
+Instead of storing a precomputed similarity matrix (`similarity.pkl`), similarity is calculated dynamically during runtime inside the Streamlit application.
 
 ---
 
 ## Features
-- Movie recommendation based on similarity
-- Content-based filtering
-- Fast similarity search using cosine similarity
-- User-friendly interface (if deployed with Streamlit)
+
+* Recommend top 5 similar movies
+* Content-based filtering
+* Interactive Streamlit UI
+* Runtime similarity calculation
+* Easy deployment and lightweight GitHub repository
 
 ---
 
 ## Dataset
-This project uses movie datasets containing:
-- Movie Title
-- Movie ID
-- Genres
-- Keywords
-- Cast
-- Crew
-- Overview
 
-Datasets can be downloaded from:
-- Kaggle
-- MovieLens
+The dataset contains movie information such as:
+
+* Movie ID
+* Title
+* Genres
+* Keywords
+* Cast
+* Crew
+* Overview
+
+Datasets can be found on:
+
+* Kaggle
+* MovieLens
 
 ---
 
 ## Machine Learning Workflow
 
 ### 1. Data Collection
+
 Collected movie metadata datasets.
 
-### 2. Data Preprocessing
-- Removed null values
-- Removed duplicate records
-- Selected important columns
+### 2. Data Cleaning
 
-Columns used:
-- movie_id
-- title
-- overview
-- genres
-- keywords
-- cast
-- crew
+Performed:
+
+* Null value removal
+* Duplicate removal
+* Column selection
+
+Important columns:
+
+* movie_id
+* title
+* genres
+* keywords
+* cast
+* crew
+* overview
 
 ### 3. Feature Engineering
-Combined useful text columns into a single column called **tags**.
+
+Combined important columns into a single column called **tags**.
 
 Example:
 genres + keywords + cast + crew + overview
 
 ### 4. Text Processing
-Applied:
-- Lowercasing
-- Tokenization
-- Stemming
 
-This helps normalize text data.
+Applied preprocessing techniques:
+
+* Lowercasing
+* Tokenization
+* Stemming
 
 ### 5. Vectorization
-Used **CountVectorizer** to convert text into numerical vectors.
+
+Converted text into numerical vectors using CountVectorizer.
 
 ```python
 from sklearn.feature_extraction.text import CountVectorizer
 ```
 
 ### 6. Similarity Calculation
-Used **Cosine Similarity** to calculate similarity between movies.
+
+Calculated movie similarity using Cosine Similarity.
 
 ```python
 from sklearn.metrics.pairwise import cosine_similarity
 ```
 
-### 7. Recommendation Generation
-When a user enters a movie name:
-1. Find the movie index
-2. Fetch similarity scores
-3. Sort movies by similarity
-4. Return top recommendations
+### 7. Recommendation Process
+
+1. User selects a movie
+2. Find movie index
+3. Calculate similarity scores
+4. Sort scores
+5. Return top 5 recommendations
 
 ---
 
 ## Technologies Used
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- NLTK
-- Streamlit (optional)
 
-## Libraries Required
-Install dependencies:
-
-```bash
-pip install pandas numpy scikit-learn nltk streamlit
-```
+* Python
+* Pandas
+* NumPy
+* Scikit-learn
+* Streamlit
+* Pickle
+* NLTK
 
 ---
 
 ## Project Structure
-```bash
+
 movie-recommender/
 │
 ├── app.py
-├── movie_recommender.ipynb
-├── movies.pkl
-├── similarity.pkl
+├── movie_dict.pkl
 ├── requirements.txt
 └── README.md
-```
 
 ---
 
-## How to Run
-1. Clone repository
+## Installation
+
+Clone the repository:
 
 ```bash
-git clone <your-repository-link>
+git clone <repository-link>
 ```
 
-2. Install dependencies
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run project
+Run the Streamlit app:
 
 ```bash
 streamlit run app.py
@@ -151,12 +152,14 @@ streamlit run app.py
 ---
 
 ## Future Improvements
-- Add poster images using API
-- Improve recommendations with collaborative filtering
-- Deploy on cloud platform
-- Add search suggestions
+
+* Add movie posters using TMDB API
+* Improve recommendation accuracy
+* Add search suggestions
+* Deploy on cloud platform
 
 ---
 
 ## Conclusion
-This project demonstrates how machine learning can be used to build an intelligent recommendation system that helps users discover movies similar to their interests.
+
+This project demonstrates how machine learning can be used to build an intelligent recommendation system that helps users discover movies based on their preferences.
